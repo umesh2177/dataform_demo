@@ -1,0 +1,6 @@
+{
+    "name":"py-workspace",
+    "dependencies": {
+        "@dataform/core": "2.3.0"
+    }
+}

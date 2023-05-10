@@ -1,0 +1,24 @@
+config {
+  type: "table",
+  schema: "reporting",
+  tags: ["daily"],
+  description: "Create a summary table for all users including statistics on  badges received.",
+  assertions: {
+    uniqueKey: ["user_id"],
+    rowConditions: ["badge_count >= 0"]
+  }
+}
+
+select
+  stg_users.user_id,
+  stg_users.age,
+  stg_users.creation_date,
+  stg_users.user_tenure,
+  count(distinct stg_badges.badge_id) as badge_count,
+  max(stg_badges.award_timestamp) as last_badge_received_at,
+  
+
+from
+  ${ref("stg_users")} as stg_users
+  left join ${ref("stg_badges")} as stg_badges
+    on stg_users.user_id = stg_badges.user_id
