@@ -16,9 +16,10 @@ select
   stg_users.user_tenure,
   count(distinct stg_badges.badge_id) as badge_count,
   max(stg_badges.award_timestamp) as last_badge_received_at,
-  
 
 from
   ${ref("stg_users")} as stg_users
   left join ${ref("stg_badges")} as stg_badges
     on stg_users.user_id = stg_badges.user_id
+group by
+  1,2,3,4

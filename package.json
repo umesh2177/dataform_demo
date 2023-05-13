@@ -1,5 +1,5 @@
 {
-    "name":"py-workspace",
+    "name":"workspace_name",
     "dependencies": {
         "@dataform/core": "2.3.0"
     }
